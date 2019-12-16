@@ -13,7 +13,7 @@ class Recipe
         @@all
     end
 
-# go through rc and select the whole array 
+
     def all_recipes
         RecipeCard.all.select do |recipecard|
             recipecard.recipe == self
@@ -32,7 +32,7 @@ class Recipe
     def self.most_popular
         self.all.max_by do |recipe|
             recipe.user_count
-            # binding.pry
+           
         end
       
     end
@@ -53,9 +53,16 @@ class Recipe
         RecipeIngredient.new(name)
     end
     def allergens
-       
-     
+        
+        self.ingredients.select do |ing|
+            ing.users.length != 0
+        end
     end
+            
+
+       
+    
+   
 
 end
 
